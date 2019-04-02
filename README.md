@@ -14,7 +14,7 @@ VirtualBox 6.0 or higher
 ```
 Docker（17.12.0-ce）
 Docker-compose（1.12.0）
-Go言語（go version go1.8.3 linux/amd64）
+Go Programming Language（go version go1.8.3 linux/amd64）
 npm（8.9 or later）
 python(2.7 or later)
 * Docker and docker-compose version is not specified. 
