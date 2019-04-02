@@ -1,0 +1,62 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "centos7"
+  config.vm.box_url = "https://github.com/vezzoni/vagrant-vboxes/releases/download/0.0.1/centos-7-x86_64.box"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+  end
+
+  config.vm.define :hyperledger do |hyperledger|
+    # HostName
+    # hyperledger.vm.hostname = "hyperledger"
+
+    # PortForward
+    # nginx.vm.network :forwarded_port, guest: 80, host: 8080
+
+    hyperledger.vm.synced_folder "./", "/vagrant"
+
+    hyperledger.vm.provision :shell, :inline => <<-EOT
+
+      # Install golang
+      sudo yum install epel-release
+      sudo yum install -y golang
+
+      # Install docker
+      sudo yum -y install yum-utils device-mapper-persistent-data lvm2
+      sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      sudo yum -y makecache fast
+      sudo yum -y install docker-ce
+      if [ ! -e /usr/local/bin/docker-compose ]; then
+        curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+        sudo mv docker-compose /usr/local/bin/docker-compose
+        sudo chmod +x /usr/local/bin/docker-compose
+      fi
+      sudo systemctl start docker
+
+      # Install npm
+      sudo yum -y install nodejs npm
+
+      # Download Platform-specific binaries.
+      # sudo curl -sSL https://goo.gl/6wtTN5 | bash -s 1.1.0-alpha
+      export PATH="${PATH}:~/bin"
+
+      # Fabric samples.
+      sudo yum -y install git
+      if [ ! -e fabric-samples ]; then
+        git clone https://github.com/hyperledger/fabric-samples.git
+      fi
+      cd fabric-samples
+
+    EOT
+  end
+end
+
