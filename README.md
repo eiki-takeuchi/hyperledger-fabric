@@ -2,12 +2,14 @@
 
 This is sample code of hyperledger fabric for PoC. 
 
-# Prerequisite
+# Software Information
 
-| Software   | Version |
-|------------|---------|
-| Vagrant    | 2.2.4   |
-| VirtualBox | 6.0     |
+| Software    | Version            |
+|-------------|--------------------|
+| Vagrant     | 2.2.4              |
+| Vagrant Box | bento/ubuntu-18.04 |
+| VirtualBox  | 6.0                |
+| OS          | Ubuntu 18.04.1 LTS |
 
 # Installation
 
