@@ -2,23 +2,14 @@
 
 This is sample code of hyperledger fabric for PoC. 
 
-# Prerequisite
+# Software Information
 
-```
-Vagrant 2.0 or higher
-VirtualBox 6.0 or higher
-```
-
-# Prerequisite of Hyperledger
-
-```
-Docker（17.12.0-ce）
-Docker-compose（1.12.0）
-Go Programming Language（go version go1.8.3 linux/amd64）
-npm（8.9 or later）
-python(2.7 or later)
-* Docker and docker-compose version is not specified. 
-```
+| Software    | Version            |
+|-------------|--------------------|
+| Vagrant     | 2.2.4              |
+| Vagrant Box | bento/ubuntu-18.04 |
+| VirtualBox  | 6.0                |
+| OS          | Ubuntu 18.04.1 LTS |
 
 # Installation
 
@@ -36,7 +27,3 @@ $ vagrant ssh
 Hyperledger Composer is a development framework to build blockchain application with ease. Currently, Hyperledger Composer supports only Hyperledger Fabric infrastructure and runtime. 
 
 https://hyperledger.github.io/composer/latest/introduction/introduction.html
-
-Installation
-
-https://hyperledger.github.io/composer/latest/installing/installing-index
